@@ -17,8 +17,9 @@ import SwiftyJSON
 class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 
     
-    @IBOutlet var sceneView: ARSCNView!
+    @IBOutlet weak var sceneView: ARSCNView!
     
+    @IBOutlet weak var textView: UIView!
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -148,11 +149,40 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
         //guard let pointOfView = sceneView.pointOfView else { return }
         
         let image = sceneView.snapshot()
+        let scale: CGFloat = image.size.width / sceneView.frame.size.width
+        let rect: CGRect = CGRect(x: textView.frame.origin.x, y: textView.frame.origin.y-sceneView.frame.origin.y, width: textView.frame.size.width, height: textView.frame.size.height)
+        let croppedImage = image.crop(rect:rect, scale: scale)
+        // use Azure computer vision API
+        /*
+        var ocrParameters = [String:String]()
+        ocrParameters["url"] = "https://i.stack.imgur.com/vrkIj.png"
+        let headers = [
+            "Content-Type": "application/json",
+            "Ocp-Apim-Subscription-Key": "1b87ea699b16400c804b43a377a82484"
+        ]
+        Alamofire.request("https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/ocr", method: .post, parameters: [:], encoding: "{\"url\":\"https://i.stack.imgur.com/vrkIj.png\"}", headers: headers).responseJSON {
+            (response:DataResponse<Any>) in
+            
+            switch(response.result) {
+                case .success(_):
+                    if let JSON = response.result.value as? [String: Any] {
+                        print(JSON)
+                    }
+                case .failure(_):
+                    if let errorNum = response.response?.statusCode {
+                        let stringErrorNum = "{\"error\": \(errorNum)}"
+                        print(stringErrorNum)
+                    }
+            }
+        }*/
+        
         if let tessract = G8Tesseract(language: "eng") {
             tessract.delegate = self
-            tessract.image = image
+            
+            tessract.image = croppedImage
             tessract.recognize()
             print("Recognized text: \(tessract.recognizedText)")
+            
             dishName = tessract.recognizedText.trim()
         }
         //let imagePlane = SCNPlane(width: sceneView.bounds.width / 6000, height: sceneView.bounds.height / 6000)
@@ -188,16 +218,25 @@ extension String {
 }
 
 extension UIImage {
-    func crop( rect: CGRect) -> UIImage {
+    func crop( rect: CGRect, scale: CGFloat) -> UIImage {
         var rect = rect
-        rect.origin.x*=self.scale
-        rect.origin.y*=self.scale
-        rect.size.width*=self.scale
-        rect.size.height*=self.scale
-        
+        rect.origin.x*=scale
+        rect.origin.y*=scale
+        rect.size.width*=scale
+        rect.size.height*=scale
+ 
         let imageRef = self.cgImage!.cropping(to: rect)
-        let image = UIImage(cgImage: imageRef!, scale: self.scale, orientation: self.imageOrientation)
+        let image = UIImage(cgImage: imageRef!)
         return image
     }
 }
 
+extension String: ParameterEncoding {
+    
+    public func encode(_ urlRequest: URLRequestConvertible, with parameters: Parameters?) throws -> URLRequest {
+        var request = try urlRequest.asURLRequest()
+        request.httpBody = data(using: .utf8, allowLossyConversion: false)
+        return request
+    }
+    
+}
