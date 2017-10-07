@@ -16,7 +16,7 @@ import SwiftyJSON
 
 class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 
-    
+    public var restuarantName = ""
     @IBOutlet var sceneView: ARSCNView!
 	
 	var allNodes: [SCNNode] = []
@@ -40,6 +40,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
         
         // Set the scene to the view
         sceneView.scene = scene
+        
+        print(restuarantName)
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.handleTap(gestureReconize:)))
         view.addGestureRecognizer(tapGesture)
@@ -266,7 +268,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
                 "Ocp-Apim-Subscription-Key": "293bdc29ef6540749d2db90d239bdc0e"
             ]
             var requestParams = [String:AnyObject]()
-            requestParams["q"] = newValue as AnyObject?
+            requestParams["q"] = restuarantName + " " + newValue as AnyObject?
             requestParams["count"] = 10 as AnyObject?
             requestParams["safeSearch"] = "Strict" as AnyObject?
             
