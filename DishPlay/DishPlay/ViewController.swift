@@ -58,11 +58,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 				})
 			}
 			
-			for node in allNodes {
-				if result.node == node.parent {
-					return
-				}
-			}
+//			for node in allNodes {
+//				if result.node == node.parent {
+//					return
+//				}
+//			}
 		}
 //		guard let touch = touches.first else { return }
 //		var hitOnCard = false
@@ -162,7 +162,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		
 		let backNode = SCNNode()
 		let plaque = SCNBox(width: 0.14, height: 0.1, length: 0.01, chamferRadius: 0.005)
-		plaque.firstMaterial?.diffuse.contents = UIColor(white: 1.0, alpha: 0.6)
+		plaque.firstMaterial?.diffuse.contents = UIColor(white: 1.0, alpha: 0.2)
 		backNode.geometry = plaque
 		
 		//Set up card view
@@ -177,8 +177,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 //		imageView.addSubview(circleLabel)
 		
 		let imageToDisplay = image
-//		let imageview = UIImageView(image: imageToDisplay)
-//		imageView.addSubview(imageview)
+		let imageview = UIImageView(image: imageToDisplay)
+		imageView.addSubview(imageview)
 		
 		let closeNode = SCNNode()
 		let closeSphere = SCNSphere(radius: 0.012)
@@ -187,10 +187,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		
 		let infoNode = SCNNode()
 		let infoGeometry = SCNPlane(width: 0.13, height: 0.09)
-		infoNode.rotation = SCNVector4.init(infoNode.rotation.x, infoNode.rotation.y, infoNode.rotation.z, -Float.pi/4)
-		infoGeometry.firstMaterial?.diffuse.contents = imageToDisplay
-		infoNode.geometry = infoGeometry
 		infoNode.position = hitPosition
+		infoGeometry.firstMaterial?.diffuse.contents = imageView
+		infoNode.geometry = infoGeometry
 		closeNode.position.x = infoNode.position.x + Float(infoGeometry.width / 2)
 		closeNode.position.y = infoNode.position.y + Float(infoGeometry.height / 2)
 		backNode.constraints = [billboardConstraint]
@@ -237,6 +236,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 */
     var dishName: String = "" {
         willSet {
+			print("in dishname")
             // run the image grapping thing
 			if cardNumbers == 0 {
             let headers = [
@@ -257,6 +257,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
                     
                     
                     if let JSON = response.result.value as? [String: Any] {
+						print("hahaha")
                         //print(JSON)
                         //take URLs from the json into an ImagesURLsArray
                         let value = JSON["value"] as? [[String: AnyObject]]
