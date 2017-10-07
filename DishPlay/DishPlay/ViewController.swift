@@ -9,6 +9,11 @@
 import UIKit
 import SceneKit
 import ARKit
+import Alamofire
+import TesseractOCR
+import SwiftyJSON
+
+
 
 class ViewController: UIViewController, ARSCNViewDelegate {
 

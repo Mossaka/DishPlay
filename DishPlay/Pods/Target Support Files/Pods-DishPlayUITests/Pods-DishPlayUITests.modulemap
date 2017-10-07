@@ -1,0 +1,6 @@
+framework module Pods_DishPlayUITests {
+  umbrella header "Pods-DishPlayUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}

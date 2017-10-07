@@ -15,6 +15,9 @@
 		181CB8DB1F88A0A6004E8B45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 181CB8D91F88A0A6004E8B45 /* LaunchScreen.storyboard */; };
 		181CB8E61F88A0A6004E8B45 /* DishPlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CB8E51F88A0A6004E8B45 /* DishPlayTests.swift */; };
 		181CB8F11F88A0A6004E8B45 /* DishPlayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CB8F01F88A0A6004E8B45 /* DishPlayUITests.swift */; };
+		2E93917D2BD9CE946C5551DB /* Pods_DishPlayUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDE51BAA46ACF701491E4E2 /* Pods_DishPlayUITests.framework */; };
+		50214D2B2DC1ACA05D3CA19B /* Pods_DishPlayTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEB6BBC82F0E51D6AA37D5 /* Pods_DishPlayTests.framework */; };
+		83D0065351A84DB29DA2DA29 /* Pods_DishPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989C35BE6C405949C836B0E4 /* Pods_DishPlay.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -35,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0C03DC7098FE36AC2A589ED3 /* Pods-DishPlayTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DishPlayTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DishPlayTests/Pods-DishPlayTests.release.xcconfig"; sourceTree = "<group>"; };
 		181CB8CB1F88A0A6004E8B45 /* DishPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DishPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		181CB8CE1F88A0A6004E8B45 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		181CB8D01F88A0A6004E8B45 /* art.scnassets */ = {isa = PBXFileReference; lastKnownFileType = wrapper.scnassets; path = art.scnassets; sourceTree = "<group>"; };
@@ -49,6 +53,14 @@
 		181CB8EC1F88A0A6004E8B45 /* DishPlayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DishPlayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		181CB8F01F88A0A6004E8B45 /* DishPlayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishPlayUITests.swift; sourceTree = "<group>"; };
 		181CB8F21F88A0A6004E8B45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7FDE51BAA46ACF701491E4E2 /* Pods_DishPlayUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DishPlayUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		989C35BE6C405949C836B0E4 /* Pods_DishPlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DishPlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A09D52B57C6D4CA5939E04CF /* Pods-DishPlay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DishPlay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DishPlay/Pods-DishPlay.debug.xcconfig"; sourceTree = "<group>"; };
+		A1E3934C811D3D70F3B8F3E2 /* Pods-DishPlayUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DishPlayUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DishPlayUITests/Pods-DishPlayUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		A57E2A777BBB30850CED901F /* Pods-DishPlay.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DishPlay.release.xcconfig"; path = "Pods/Target Support Files/Pods-DishPlay/Pods-DishPlay.release.xcconfig"; sourceTree = "<group>"; };
+		C7421C5C7B36BD38F81485DE /* Pods-DishPlayTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DishPlayTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DishPlayTests/Pods-DishPlayTests.debug.xcconfig"; sourceTree = "<group>"; };
+		E7EEB6BBC82F0E51D6AA37D5 /* Pods_DishPlayTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DishPlayTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		FC5172C5E94E9E083D6FE4BD /* Pods-DishPlayUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DishPlayUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DishPlayUITests/Pods-DishPlayUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +68,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83D0065351A84DB29DA2DA29 /* Pods_DishPlay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -63,6 +76,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				50214D2B2DC1ACA05D3CA19B /* Pods_DishPlayTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -70,6 +84,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E93917D2BD9CE946C5551DB /* Pods_DishPlayUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -83,6 +98,8 @@
 				181CB8E41F88A0A6004E8B45 /* DishPlayTests */,
 				181CB8EF1F88A0A6004E8B45 /* DishPlayUITests */,
 				181CB8CC1F88A0A6004E8B45 /* Products */,
+				5D8E208FF1BF0D2CC852AE32 /* Pods */,
+				7286DB51AC41D370D0D378D9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -128,6 +145,29 @@
 			path = DishPlayUITests;
 			sourceTree = "<group>";
 		};
+		5D8E208FF1BF0D2CC852AE32 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				A09D52B57C6D4CA5939E04CF /* Pods-DishPlay.debug.xcconfig */,
+				A57E2A777BBB30850CED901F /* Pods-DishPlay.release.xcconfig */,
+				C7421C5C7B36BD38F81485DE /* Pods-DishPlayTests.debug.xcconfig */,
+				0C03DC7098FE36AC2A589ED3 /* Pods-DishPlayTests.release.xcconfig */,
+				A1E3934C811D3D70F3B8F3E2 /* Pods-DishPlayUITests.debug.xcconfig */,
+				FC5172C5E94E9E083D6FE4BD /* Pods-DishPlayUITests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		7286DB51AC41D370D0D378D9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				989C35BE6C405949C836B0E4 /* Pods_DishPlay.framework */,
+				E7EEB6BBC82F0E51D6AA37D5 /* Pods_DishPlayTests.framework */,
+				7FDE51BAA46ACF701491E4E2 /* Pods_DishPlayUITests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -135,9 +175,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 181CB8F51F88A0A6004E8B45 /* Build configuration list for PBXNativeTarget "DishPlay" */;
 			buildPhases = (
+				4C929195C6B9103054AADF82 /* [CP] Check Pods Manifest.lock */,
 				181CB8C71F88A0A6004E8B45 /* Sources */,
 				181CB8C81F88A0A6004E8B45 /* Frameworks */,
 				181CB8C91F88A0A6004E8B45 /* Resources */,
+				2773DCF9AE70F11191E8CA51 /* [CP] Embed Pods Frameworks */,
+				8E48060741B08017125B38F1 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -152,9 +195,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 181CB8F81F88A0A6004E8B45 /* Build configuration list for PBXNativeTarget "DishPlayTests" */;
 			buildPhases = (
+				5A9133CC2FCCF28D14255746 /* [CP] Check Pods Manifest.lock */,
 				181CB8DD1F88A0A6004E8B45 /* Sources */,
 				181CB8DE1F88A0A6004E8B45 /* Frameworks */,
 				181CB8DF1F88A0A6004E8B45 /* Resources */,
+				4D9244847CC80B61DC4A7E8F /* [CP] Embed Pods Frameworks */,
+				886F94B7AE139E62E118D09F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -170,9 +216,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 181CB8FB1F88A0A6004E8B45 /* Build configuration list for PBXNativeTarget "DishPlayUITests" */;
 			buildPhases = (
+				3F1E28CE38244AABB7B748EA /* [CP] Check Pods Manifest.lock */,
 				181CB8E81F88A0A6004E8B45 /* Sources */,
 				181CB8E91F88A0A6004E8B45 /* Frameworks */,
 				181CB8EA1F88A0A6004E8B45 /* Resources */,
+				38D51DA1E08132F829076375 /* [CP] Embed Pods Frameworks */,
+				4432FB65D4C6F54ADBBC732E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -254,6 +303,160 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2773DCF9AE70F11191E8CA51 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-DishPlay/Pods-DishPlay-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+				"${BUILT_PRODUCTS_DIR}/TesseractOCRiOS/TesseractOCR.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TesseractOCR.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DishPlay/Pods-DishPlay-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		38D51DA1E08132F829076375 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DishPlayUITests/Pods-DishPlayUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3F1E28CE38244AABB7B748EA /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DishPlayUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4432FB65D4C6F54ADBBC732E /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DishPlayUITests/Pods-DishPlayUITests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4C929195C6B9103054AADF82 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DishPlay-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4D9244847CC80B61DC4A7E8F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DishPlayTests/Pods-DishPlayTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A9133CC2FCCF28D14255746 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-DishPlayTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		886F94B7AE139E62E118D09F /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DishPlayTests/Pods-DishPlayTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8E48060741B08017125B38F1 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-DishPlay/Pods-DishPlay-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		181CB8C71F88A0A6004E8B45 /* Sources */ = {
@@ -425,9 +628,11 @@
 		};
 		181CB8F61F88A0A6004E8B45 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A09D52B57C6D4CA5939E04CF /* Pods-DishPlay.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WMPNP8H5G7;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DishPlay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CalHackGroup.DishPlay;
@@ -439,9 +644,11 @@
 		};
 		181CB8F71F88A0A6004E8B45 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A57E2A777BBB30850CED901F /* Pods-DishPlay.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WMPNP8H5G7;
+				ENABLE_BITCODE = NO;
 				INFOPLIST_FILE = DishPlay/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = CalHackGroup.DishPlay;
@@ -453,6 +660,7 @@
 		};
 		181CB8F91F88A0A6004E8B45 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C7421C5C7B36BD38F81485DE /* Pods-DishPlayTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -469,6 +677,7 @@
 		};
 		181CB8FA1F88A0A6004E8B45 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0C03DC7098FE36AC2A589ED3 /* Pods-DishPlayTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -485,6 +694,7 @@
 		};
 		181CB8FC1F88A0A6004E8B45 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A1E3934C811D3D70F3B8F3E2 /* Pods-DishPlayUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = WMPNP8H5G7;
@@ -500,6 +710,7 @@
 		};
 		181CB8FD1F88A0A6004E8B45 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FC5172C5E94E9E083D6FE4BD /* Pods-DishPlayUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				DEVELOPMENT_TEAM = WMPNP8H5G7;
