@@ -15,9 +15,13 @@
 		181CB8DB1F88A0A6004E8B45 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 181CB8D91F88A0A6004E8B45 /* LaunchScreen.storyboard */; };
 		181CB8E61F88A0A6004E8B45 /* DishPlayTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CB8E51F88A0A6004E8B45 /* DishPlayTests.swift */; };
 		181CB8F11F88A0A6004E8B45 /* DishPlayUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 181CB8F01F88A0A6004E8B45 /* DishPlayUITests.swift */; };
+		18D4ACE21F88B7B600157B9E /* Pods_DishPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989C35BE6C405949C836B0E4 /* Pods_DishPlay.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		18D4ACE91F88B93800157B9E /* Alamofire.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D4ACEA1F88B93800157B9E /* Alamofire.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		18D4ACEB1F88B93D00157B9E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D4ACEC1F88B93D00157B9E /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		18D4ACED1F88B94000157B9E /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D4ACEE1F88B94000157B9E /* TesseractOCR.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		18FF0C7D1F88C50500674D71 /* tessdata in Resources */ = {isa = PBXBuildFile; fileRef = 18FF0C7C1F88C50500674D71 /* tessdata */; };
 		2E93917D2BD9CE946C5551DB /* Pods_DishPlayUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7FDE51BAA46ACF701491E4E2 /* Pods_DishPlayUITests.framework */; };
 		50214D2B2DC1ACA05D3CA19B /* Pods_DishPlayTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7EEB6BBC82F0E51D6AA37D5 /* Pods_DishPlayTests.framework */; };
-		83D0065351A84DB29DA2DA29 /* Pods_DishPlay.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 989C35BE6C405949C836B0E4 /* Pods_DishPlay.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,6 +41,19 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		18D4ACE81F88B81D00157B9E /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		0C03DC7098FE36AC2A589ED3 /* Pods-DishPlayTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DishPlayTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-DishPlayTests/Pods-DishPlayTests.release.xcconfig"; sourceTree = "<group>"; };
 		181CB8CB1F88A0A6004E8B45 /* DishPlay.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DishPlay.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -53,6 +70,10 @@
 		181CB8EC1F88A0A6004E8B45 /* DishPlayUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DishPlayUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		181CB8F01F88A0A6004E8B45 /* DishPlayUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishPlayUITests.swift; sourceTree = "<group>"; };
 		181CB8F21F88A0A6004E8B45 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		18D4ACEA1F88B93800157B9E /* Alamofire.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Alamofire.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18D4ACEC1F88B93D00157B9E /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18D4ACEE1F88B94000157B9E /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18FF0C7C1F88C50500674D71 /* tessdata */ = {isa = PBXFileReference; lastKnownFileType = folder; name = tessdata; path = ../../../../../Desktop/tessdata; sourceTree = "<group>"; };
 		7FDE51BAA46ACF701491E4E2 /* Pods_DishPlayUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DishPlayUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		989C35BE6C405949C836B0E4 /* Pods_DishPlay.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_DishPlay.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A09D52B57C6D4CA5939E04CF /* Pods-DishPlay.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-DishPlay.debug.xcconfig"; path = "Pods/Target Support Files/Pods-DishPlay/Pods-DishPlay.debug.xcconfig"; sourceTree = "<group>"; };
@@ -68,7 +89,10 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83D0065351A84DB29DA2DA29 /* Pods_DishPlay.framework in Frameworks */,
+				18D4ACED1F88B94000157B9E /* TesseractOCR.framework in Frameworks */,
+				18D4ACEB1F88B93D00157B9E /* SwiftyJSON.framework in Frameworks */,
+				18D4ACE91F88B93800157B9E /* Alamofire.framework in Frameworks */,
+				18D4ACE21F88B7B600157B9E /* Pods_DishPlay.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +140,7 @@
 		181CB8CD1F88A0A6004E8B45 /* DishPlay */ = {
 			isa = PBXGroup;
 			children = (
+				18FF0C7C1F88C50500674D71 /* tessdata */,
 				181CB8CE1F88A0A6004E8B45 /* AppDelegate.swift */,
 				181CB8D01F88A0A6004E8B45 /* art.scnassets */,
 				181CB8D21F88A0A6004E8B45 /* ViewController.swift */,
@@ -161,6 +186,9 @@
 		7286DB51AC41D370D0D378D9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18D4ACEE1F88B94000157B9E /* TesseractOCR.framework */,
+				18D4ACEC1F88B93D00157B9E /* SwiftyJSON.framework */,
+				18D4ACEA1F88B93800157B9E /* Alamofire.framework */,
 				989C35BE6C405949C836B0E4 /* Pods_DishPlay.framework */,
 				E7EEB6BBC82F0E51D6AA37D5 /* Pods_DishPlayTests.framework */,
 				7FDE51BAA46ACF701491E4E2 /* Pods_DishPlayUITests.framework */,
@@ -181,6 +209,7 @@
 				181CB8C91F88A0A6004E8B45 /* Resources */,
 				2773DCF9AE70F11191E8CA51 /* [CP] Embed Pods Frameworks */,
 				8E48060741B08017125B38F1 /* [CP] Copy Pods Resources */,
+				18D4ACE81F88B81D00157B9E /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -283,6 +312,7 @@
 			files = (
 				181CB8D11F88A0A6004E8B45 /* art.scnassets in Resources */,
 				181CB8DB1F88A0A6004E8B45 /* LaunchScreen.storyboard in Resources */,
+				18FF0C7D1F88C50500674D71 /* tessdata in Resources */,
 				181CB8D81F88A0A6004E8B45 /* Assets.xcassets in Resources */,
 				181CB8D61F88A0A6004E8B45 /* Main.storyboard in Resources */,
 			);
@@ -630,6 +660,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A09D52B57C6D4CA5939E04CF /* Pods-DishPlay.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WMPNP8H5G7;
 				ENABLE_BITCODE = NO;
@@ -646,6 +677,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = A57E2A777BBB30850CED901F /* Pods-DishPlay.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = WMPNP8H5G7;
 				ENABLE_BITCODE = NO;
