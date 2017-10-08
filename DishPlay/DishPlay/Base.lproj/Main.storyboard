@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13526" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="9VX-bK-3gm">
-    <device id="retina4_7" orientation="landscape">
+    <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
@@ -15,11 +15,11 @@
             <objects>
                 <viewController id="9VX-bK-3gm" customClass="SigninViewController" customModule="DishPlay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fZ6-YC-NQM">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" insetsLayoutMarginsFromSafeArea="NO" image="iPhone 7 Plus1" translatesAutoresizingMaskIntoConstraints="NO" id="yqz-LX-JCM">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Login" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SDN-P3-UKu">
@@ -76,24 +76,24 @@
             <objects>
                 <viewController id="t2o-1R-7id" customClass="RestaurantTableViewController" customModule="DishPlay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="xvO-fA-pgp">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="artboard3" translatesAutoresizingMaskIntoConstraints="NO" id="sgJ-Qj-1Fk">
                                 <rect key="frame" x="0.0" y="20" width="375" height="65"/>
                             </imageView>
                             <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="7ya-DV-WZi">
-                                <rect key="frame" x="0.0" y="177.5" width="20" height="20"/>
+                                <rect key="frame" x="0.0" y="323.5" width="20" height="20"/>
                             </activityIndicatorView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="2ZF-GI-eri">
-                                <rect key="frame" x="0.0" y="86" width="667" height="289"/>
+                                <rect key="frame" x="0.0" y="106" width="375" height="561"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="110" id="J9L-qt-M38" customClass="TableViewCell" customModule="DishPlay" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="667" height="110"/>
+                                        <rect key="frame" x="0.0" y="28" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="J9L-qt-M38" id="P7S-kg-aja">
-                                            <rect key="frame" x="0.0" y="0.0" width="667" height="109.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="109.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="251" verticalCompressionResistancePriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UDO-yK-2ak">
@@ -131,7 +131,7 @@
                                 </connections>
                             </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please select current restaurent" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2hl-zS-mRH">
-                                <rect key="frame" x="0.0" y="51" width="667" height="44"/>
+                                <rect key="frame" x="0.0" y="71" width="375" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="tt4-H2-NSx"/>
                                 </constraints>
@@ -172,7 +172,7 @@
             <objects>
                 <viewController id="BV1-FR-VrT" customClass="ViewController" customModule="DishPlay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Tbw-qQ-XX6">
-                        <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view alpha="0.40000000000000002" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IP6-uE-JcQ">
@@ -181,8 +181,18 @@
                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                             </view>
                             <arscnView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Pae-Wt-Xg0">
-                                <rect key="frame" x="0.0" y="0.0" width="667" height="375"/>
+                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </arscnView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="By0-0M-405">
+                                <rect key="frame" x="268" y="20" width="107" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Ordered Dishes">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="didTapBtn:" destination="BV1-FR-VrT" eventType="touchUpInside" id="hcP-ej-dSj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -198,26 +208,38 @@
                         <outlet property="sceneView" destination="Pae-Wt-Xg0" id="GbA-Qk-94G"/>
                         <outlet property="textView" destination="IP6-uE-JcQ" id="OYK-Aw-BV7"/>
                         <outlet property="view" destination="Tbw-qQ-XX6" id="LY1-p5-cYw"/>
+                        <segue destination="zZ1-Fs-w9a" kind="showDetail" identifier="fromARtoOrderedlist" id="fhI-o6-4iV"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="303" y="70"/>
+            <point key="canvasLocation" x="301.60000000000002" y="69.715142428785612"/>
         </scene>
-        <!--View Controller-->
+        <!--Orderedlist View Controller-->
         <scene sceneID="0CH-NO-SHX">
             <objects>
-                <viewController id="pLs-oy-iq7" sceneMemberID="viewController">
+                <viewController id="pLs-oy-iq7" customClass="OrderedlistViewController" customModule="DishPlay" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="b1a-hZ-2jw">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="artboard3" translatesAutoresizingMaskIntoConstraints="NO" id="gBN-Z2-jen">
+                                <rect key="frame" x="0.0" y="88" width="375" height="63"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ordered List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PCJ-Od-1Sy">
+                                <rect key="frame" x="16" y="159" width="343" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ZYC-sk-QkY">
-                                <rect key="frame" x="0.0" y="129" width="375" height="538"/>
+                                <rect key="frame" x="0.0" y="200" width="375" height="467"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" rowHeight="110" id="Wz1-Nz-bqi">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="110" id="Wz1-Nz-bqi" customClass="OrderedTableViewCell" customModule="DishPlay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wz1-Nz-bqi" id="528-be-Prw">
@@ -244,28 +266,48 @@
                                                 </label>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="foodName" destination="hw2-Qx-Wlr" id="ged-Oz-Kt7"/>
+                                            <outlet property="photo" destination="WWl-rC-Xxr" id="pwz-1Y-3vn"/>
+                                            <outlet property="rating" destination="vWy-0a-BTa" id="JME-zx-SMd"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="pLs-oy-iq7" id="xW8-Ug-Ur7"/>
+                                    <outlet property="delegate" destination="pLs-oy-iq7" id="TIG-KS-BVW"/>
+                                </connections>
                             </tableView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="artboard3" translatesAutoresizingMaskIntoConstraints="NO" id="gBN-Z2-jen">
-                                <rect key="frame" x="0.0" y="30" width="375" height="63"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Ordered List" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PCJ-Od-1Sy">
-                                <rect key="frame" x="16" y="101" width="343" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <viewLayoutGuide key="safeArea" id="xD7-8g-NvZ"/>
                     </view>
+                    <navigationItem key="navigationItem" id="TPw-LH-Lou"/>
+                    <connections>
+                        <outlet property="orderedlistTableView" destination="ZYC-sk-QkY" id="WfA-2s-KcS"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zcD-qZ-egk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1146.4000000000001" y="69.715142428785612"/>
+            <point key="canvasLocation" x="1853.5999999999999" y="68.815592203898049"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="qUn-PN-ndH">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="zZ1-Fs-w9a" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="q31-iD-xbX">
+                        <rect key="frame" x="0.0" y="20" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="pLs-oy-iq7" kind="relationship" relationship="rootViewController" id="fYd-Wj-2An"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9G1-2R-gyP" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1135" y="76"/>
         </scene>
     </scenes>
     <resources>

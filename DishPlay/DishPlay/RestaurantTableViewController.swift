@@ -11,8 +11,6 @@ import MapKit
 import Alamofire
 
 class RestaurantTableViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
-    @IBOutlet weak var resLabel: UILabel!
-    @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var resTableView: UITableView!
     var locManager = CLLocationManager()
     var currentLocation: CLLocation!
@@ -62,11 +60,6 @@ class RestaurantTableViewController: UIViewController, UITableViewDataSource, UI
         }
         cell.nameLabel.text = resNames[indexPath.row]
         cell.photo.image = resImages[indexPath.row]
-        
-        if(indexPath.row == 7) {
-            indicator.stopAnimating()
-            indicator.hidesWhenStopped = true
-        }
         return cell
     }
     

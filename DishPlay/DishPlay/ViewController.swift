@@ -22,11 +22,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
     public var restuarantName = ""
     @IBOutlet var sceneView: ARSCNView!
 	
-	private var allNodes: [SCNNode] = []
+	private var allCloseNodes: [SCNNode] = []
+    private var allOrderNodes: [SCNNode] = []
 	private var cardNumbers = 0
 	private var touch: UITouch!
 	private var imageView: UIView!
     private var cardStack: [Card] = []
+    private var orderStack: [Card] = []
     
 	@IBOutlet weak var textView: UIView!
 
@@ -78,24 +80,44 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		touch = touches.first
 		let nodeResults = sceneView.hitTest(touch.location(in: sceneView), options: nil)
 		for result in nodeResults {
-			if allNodes.contains(result.node) {
+			if allCloseNodes.contains(result.node) {
 				result.node.runAction(SCNAction.wait(duration: 0.5), completionHandler: {
 					print("touched")
 					result.node.parent!.physicsBody!.velocity = SCNVector3.init(0,10,0)
-					self.allNodes.remove(at: self.allNodes.index(of: result.node)!)
+                    result.node.parent?.removeFromParentNode()
+                    let index = self.allCloseNodes.index(of: result.node)!
+					self.allCloseNodes.remove(at: index)
+                    self.cardStack.remove(at: index)
 				})
-				self.textView.alpha = 0.5
-				self.cardNumbers = 0
-				break
+                self.textView.alpha = 0.5
+                self.cardNumbers = 0
 			}
+            if allOrderNodes.contains(result.node) {
+                result.node.runAction(SCNAction.wait(duration: 0.5), completionHandler: {
+                    print("touched")
+                    result.node.parent!.physicsBody!.velocity = SCNVector3.init(0,10,0)
+                    result.node.parent?.removeFromParentNode()
+                    let index = self.allOrderNodes.index(of: result.node)!
+                    self.allOrderNodes.remove(at: index)
+                    self.orderStack.append( Card(name: self.dishName, image: self.image! ) )
+                })
+                self.textView.alpha = 0.5
+                self.cardNumbers = 0
+            }
 		}
+        print(self.orderStack)
 	}
 	
 	
 	func touches() {
 		print("create card!")
+        spinner?.stopAnimating()
 		let results = sceneView.hitTest(touch.location(in: sceneView), types: [ARHitTestResult.ResultType.featurePoint])
-		guard let hitFeature = results.last else { return }
+		guard let hitFeature = results.last else {
+            print("returned, no card is created")
+            return
+            
+        }
 		let hitTransform = SCNMatrix4(hitFeature.worldTransform)
 		let hitPosition = SCNVector3Make(hitTransform.m41,
 										 hitTransform.m42,
@@ -171,11 +193,10 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		
 		textView.alpha = 0.0
 		cardNumbers = 1
-		self.allNodes.append(closeNode)
-		self.allNodes.append(orderNode)
-        if let cardImage = image {
-            cardStack.append(Card(name: dishName, image: image!))
-        }
+		self.allCloseNodes.append(closeNode)
+		self.allOrderNodes.append(orderNode)
+        self.cardStack.append(Card(name: dishName, image: image!))
+        
     }
 
     
@@ -278,16 +299,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 			spinner = UIActivityIndicatorView(frame: CGRect(x: self.view.frame.size.width/2, y: self.view.frame.size.height/2, width: 0.2, height: 0.2))
 			self.view.addSubview(spinner!)
 			spinner?.startAnimating()
-			DispatchQueue.global(qos: .userInitiated).async {
-				[weak self] in
-				let urlContents = try? Data(contentsOf: url)
-				if let imageData = urlContents, url == self?.imageURL {
-					DispatchQueue.main.async {
-						self?.image = UIImage(data: imageData)
-						//self.performSegue(withIdentifier: "fromARtoImage", sender: self)
-					}
-				}
-			}
+			//DispatchQueue.global(qos: .userInitiated).async {
+				//[weak self] in
+            let urlContents = try? Data(contentsOf: url)
+            if let imageData = urlContents, url == self.imageURL {
+                //DispatchQueue.main.async {
+                
+                self.image = UIImage(data: imageData)
+                    //self.performSegue(withIdentifier: "fromARtoImage", sender: self)
+                //}
+            }
+			//}
 		}
 	}
 	
@@ -296,7 +318,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		didSet {
 			if image != nil {
 				touches()
-				spinner?.stopAnimating()
+                spinner?.stopAnimating()
 			} else {
 				cardNumbers = 0
 			}
@@ -412,6 +434,17 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
         // Reset tracking and/or remove existing anchors if consistent tracking is required
         
     }
+    @IBAction func didTapBtn(_ sender: UIButton) {
+        performSegue(withIdentifier: "fromARtoOrderedlist", sender: nil)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "fromARtoOrderedlist" {
+            let navigate = segue.destination as! UINavigationController
+            let orderedlistController = navigate.visibleViewController as! OrderedlistViewController 
+            orderedlistController.orderedCards = self.orderStack
+        }
+    }
 }
     
 extension String {
@@ -466,4 +499,5 @@ class Card {
         self.name = name
         self.image = image
     }
+    public var description: String { return "name is \(name) and image is \(image)" }
 }

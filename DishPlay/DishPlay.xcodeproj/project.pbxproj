@@ -22,6 +22,8 @@
 		18D4ACEB1F88B93D00157B9E /* SwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D4ACEC1F88B93D00157B9E /* SwiftyJSON.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		18D4ACED1F88B94000157B9E /* TesseractOCR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18D4ACEE1F88B94000157B9E /* TesseractOCR.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		18F8D2081F8A49DF009CE51C /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 18F8D2071F8A49DF009CE51C /* GoogleService-Info.plist */; };
+		18FA849D1F8A7F84001C64E0 /* OrderedlistViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA849C1F8A7F84001C64E0 /* OrderedlistViewController.swift */; };
+		18FA849F1F8A80C7001C64E0 /* OrderedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FA849E1F8A80C7001C64E0 /* OrderedTableViewCell.swift */; };
 		18FF0C811F8958B900674D71 /* RestaurantTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FF0C801F8958B800674D71 /* RestaurantTableViewController.swift */; };
 		18FF0C851F896FBA00674D71 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FF0C841F896FBA00674D71 /* TableViewCell.swift */; };
 		18FF0C871F89AE1E00674D71 /* ARDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18FF0C861F89AE1E00674D71 /* ARDetailedViewController.swift */; };
@@ -82,6 +84,8 @@
 		18D4ACEC1F88B93D00157B9E /* SwiftyJSON.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyJSON.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18D4ACEE1F88B94000157B9E /* TesseractOCR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = TesseractOCR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		18F8D2071F8A49DF009CE51C /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		18FA849C1F8A7F84001C64E0 /* OrderedlistViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedlistViewController.swift; sourceTree = "<group>"; };
+		18FA849E1F8A80C7001C64E0 /* OrderedTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderedTableViewCell.swift; sourceTree = "<group>"; };
 		18FF0C801F8958B800674D71 /* RestaurantTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantTableViewController.swift; sourceTree = "<group>"; };
 		18FF0C841F896FBA00674D71 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		18FF0C861F89AE1E00674D71 /* ARDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ARDetailedViewController.swift; sourceTree = "<group>"; };
@@ -165,6 +169,8 @@
 				18FF0C841F896FBA00674D71 /* TableViewCell.swift */,
 				18FF0C861F89AE1E00674D71 /* ARDetailedViewController.swift */,
 				181AB8B71F8A4FB00062F6B5 /* SigninViewController.swift */,
+				18FA849C1F8A7F84001C64E0 /* OrderedlistViewController.swift */,
+				18FA849E1F8A80C7001C64E0 /* OrderedTableViewCell.swift */,
 			);
 			path = DishPlay;
 			sourceTree = "<group>";
@@ -516,10 +522,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18FA849D1F8A7F84001C64E0 /* OrderedlistViewController.swift in Sources */,
 				18FF0C871F89AE1E00674D71 /* ARDetailedViewController.swift in Sources */,
 				181CB8D31F88A0A6004E8B45 /* ViewController.swift in Sources */,
 				181AB8B81F8A4FB00062F6B5 /* SigninViewController.swift in Sources */,
 				18FF0C851F896FBA00674D71 /* TableViewCell.swift in Sources */,
+				18FA849F1F8A80C7001C64E0 /* OrderedTableViewCell.swift in Sources */,
 				181CB8CF1F88A0A6004E8B45 /* AppDelegate.swift in Sources */,
 				18FF0C811F8958B900674D71 /* RestaurantTableViewController.swift in Sources */,
 			);
