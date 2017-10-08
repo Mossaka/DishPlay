@@ -239,7 +239,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="110" id="Wz1-Nz-bqi" customClass="OrderedTableViewCell" customModule="DishPlay" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="orderedCell" rowHeight="110" id="Wz1-Nz-bqi" customClass="OrderedTableViewCell" customModule="DishPlay" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="375" height="110"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Wz1-Nz-bqi" id="528-be-Prw">
@@ -269,14 +269,10 @@
                                         <connections>
                                             <outlet property="foodName" destination="hw2-Qx-Wlr" id="ged-Oz-Kt7"/>
                                             <outlet property="photo" destination="WWl-rC-Xxr" id="pwz-1Y-3vn"/>
-                                            <outlet property="rating" destination="vWy-0a-BTa" id="JME-zx-SMd"/>
+                                            <outlet property="rating" destination="vWy-0a-BTa" id="21p-EO-ECJ"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="pLs-oy-iq7" id="xW8-Ug-Ur7"/>
-                                    <outlet property="delegate" destination="pLs-oy-iq7" id="TIG-KS-BVW"/>
-                                </connections>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

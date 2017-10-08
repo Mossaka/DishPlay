@@ -32,12 +32,13 @@ class OrderedlistViewController: UIViewController, UITableViewDataSource, UITabl
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
         
-        guard let cell = orderedlistTableView.dequeueReusableCell(withIdentifier: "orderedCell", for: indexPath as IndexPath) as? TableViewCell
+        guard let cell = orderedlistTableView.dequeueReusableCell(withIdentifier: "orderedCell", for: indexPath as IndexPath) as? OrderedTableViewCell
             else {
                 fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
-        cell.nameLabel.text = orderedCards[indexPath.row].name
+        cell.foodName.text = orderedCards[indexPath.row].name
         cell.photo.image = orderedCards[indexPath.row].image
+        cell.rating.text = "Ratings: 5.0"
         return cell
     }
     

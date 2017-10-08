@@ -11,8 +11,8 @@ import UIKit
 class OrderedTableViewCell: UITableViewCell {
     @IBOutlet weak var photo: UIImageView!
     @IBOutlet weak var foodName: UILabel!
-    @IBOutlet weak var rating: UILabel!
     
+    @IBOutlet weak var rating: UILabel!
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
