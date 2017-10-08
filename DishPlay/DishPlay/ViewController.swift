@@ -26,7 +26,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 	private var cardNumbers = 0
 	private var touch: UITouch!
 	private var imageView: UIView!
-    private var cardStack: [Card]
+    private var cardStack: [Card] = []
     
 	@IBOutlet weak var textView: UIView!
 
@@ -176,7 +176,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
         if let cardImage = image {
             cardStack.append(Card(name: dishName, image: image!))
         }
-}
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
