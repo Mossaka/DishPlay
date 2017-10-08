@@ -12,9 +12,9 @@ import Firebase
 
 class SigninViewController: UIViewController, GIDSignInUIDelegate {
     
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+       // self.view.backgroundColor = UIColor(patternImage: UIImage (named: "iPhone 7 Plus 1.png")!)
         GIDSignIn.sharedInstance().uiDelegate = self
         GIDSignIn.sharedInstance().signIn()
         
