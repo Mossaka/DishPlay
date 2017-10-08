@@ -201,7 +201,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 				
 				Alamofire.request("https://api.cognitive.microsoft.com/bing/v7.0/images/search",
 				  parameters: requestParams,
-				  encoding: URLEncoding.default, headers: headers).responseJSON {
+				  encoding: URLEncoding.default,
+                  headers: headers).responseJSON {
 					(response:DataResponse<Any>) in
 					
 					switch(response.result) {
@@ -317,6 +318,32 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
                     }
                 }
                 self.dishName = setence
+                var requestParams = [String:AnyObject]()
+                requestParams["text"] = self.dishName as AnyObject?
+                requestParams["mode"] = "Proof" as AnyObject?
+                let httpHeader = ["Ocp-Apim-Subscription-Key": "603e449278a6495fa99fbf3a43816582"]
+                Alamofire.request("https://api.cognitive.microsoft.com/bing/v5.0/spellcheck",
+                                  method: .get,
+                                  parameters: requestParams,
+                                  encoding: URLEncoding.default, headers: httpHeader).responseJSON {
+                    (response:DataResponse<Any>) in
+    
+                    switch(response.result) {
+                    case .success(_):
+                        if let result = response.result.value as? [String: Any] {
+                            let json = JSON(arrayLiteral: result)
+                            for (_, subJSON):(String, JSON) in json["flaggedTokens"] {
+                                self.dishName = self.dishName.replacingOccurrences(of: subJSON["token"].string!, with: subJSON["suggestions"][0]["suggestion"].string!)
+                            }
+                        }
+                    case .failure(_):
+                        if let errorNum = response.response?.statusCode {
+                            let stringErrorNum = "{\"error\": \(errorNum)}"
+                            print(stringErrorNum)
+                        }
+
+                    }
+                }
             }
         }
         /*
@@ -354,7 +381,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
         
     }
 }
-
+    
 extension String {
     func trim() -> String {
         return self.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
