@@ -136,6 +136,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		dishNameNode.position.y += Float(infoGeometry.height*0.7)
 		infoNode.addChildNode(backNode)
 		sceneView.scene.rootNode.addChildNode(infoNode)
+		cardNumbers = 1
 		print("Appear!")
 		self.allNodes.append(closeNode)
 	}
@@ -177,52 +178,51 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
             print("Dish name is \(newValue)")
             // run the image grapping thing
 			if cardNumbers == 0 {
-            let headers = [
-                "Ocp-Apim-Subscription-Key": "293bdc29ef6540749d2db90d239bdc0e"
-            ]
-            var requestParams = [String:AnyObject]()
-            requestParams["q"] = newValue as AnyObject?
-            requestParams["count"] = 10 as AnyObject?
-            requestParams["safeSearch"] = "Strict" as AnyObject?
-            
-            Alamofire.request("https://api.cognitive.microsoft.com/bing/v7.0/images/search",
-              parameters: requestParams,
-              encoding: URLEncoding.default, headers: headers).responseJSON {
-                (response:DataResponse<Any>) in
-                
-                switch(response.result) {
-                case .success(_):
-                    
-                    
-                    if let JSON = response.result.value as? [String: Any] {
-						print("hahaha")
-                        //print(JSON)
-                        //take URLs from the json into an ImagesURLsArray
-                        let value = JSON["value"] as? [[String: AnyObject]]
-                        //for imageValue in value! {
-                        if let imageValue = value {
-                            if imageValue.count > 0 {
-								self.cardNumbers = 1
-                                self.imageURL = URL(string: (imageValue[0]["contentUrl"] as? String)!)
-                                /*Alamofire.download((imageValue["contentUrl"] as? String)!)
-                                 .responseData { response in
-                                 if let data = response.result.value {
-                                 let image = UIImage(data: data)
-                                 }
-                                 }*/
-                                //}
-                            }
-                        }
-                    }  else {
-                        print("error with response.result.value")}
-                case .failure(_):
-                    if let errorNum = response.response?.statusCode {
-                        let stringErrorNum = "{\"error\": \(errorNum)}"
-                        print(stringErrorNum)
-                    }
-                }
-            }
-        }
+				let headers = [
+					"Ocp-Apim-Subscription-Key": "293bdc29ef6540749d2db90d239bdc0e"
+				]
+				var requestParams = [String:AnyObject]()
+				requestParams["q"] = newValue as AnyObject?
+				requestParams["count"] = 10 as AnyObject?
+				requestParams["safeSearch"] = "Strict" as AnyObject?
+				
+				Alamofire.request("https://api.cognitive.microsoft.com/bing/v7.0/images/search",
+				  parameters: requestParams,
+				  encoding: URLEncoding.default, headers: headers).responseJSON {
+					(response:DataResponse<Any>) in
+					
+					switch(response.result) {
+					case .success(_):
+						
+						
+						if let JSON = response.result.value as? [String: Any] {
+							print("hahaha")
+							//print(JSON)
+							//take URLs from the json into an ImagesURLsArray
+							let value = JSON["value"] as? [[String: AnyObject]]
+							//for imageValue in value! {
+							if let imageValue = value {
+								if imageValue.count > 0 {
+									self.imageURL = URL(string: (imageValue[0]["contentUrl"] as? String)!)
+									/*Alamofire.download((imageValue["contentUrl"] as? String)!)
+									 .responseData { response in
+									 if let data = response.result.value {
+									 let image = UIImage(data: data)
+									 }
+									 }*/
+									//}
+								}
+							}
+						}  else {
+							print("error with response.result.value")}
+					case .failure(_):
+						if let errorNum = response.response?.statusCode {
+							let stringErrorNum = "{\"error\": \(errorNum)}"
+							print(stringErrorNum)
+						}
+					}
+				}
+			}
 		}
     }
     
