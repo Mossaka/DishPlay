@@ -98,8 +98,10 @@
                         <viewLayoutGuide key="safeArea" id="47l-N9-IBM"/>
                     </view>
                     <connections>
+                        <outlet property="parentView" destination="Tbw-qQ-XX6" id="OSb-7r-Jdv"/>
                         <outlet property="sceneView" destination="Pae-Wt-Xg0" id="GbA-Qk-94G"/>
                         <outlet property="textView" destination="IP6-uE-JcQ" id="OYK-Aw-BV7"/>
+                        <outlet property="view" destination="Tbw-qQ-XX6" id="LY1-p5-cYw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="SZV-WD-TEh" sceneMemberID="firstResponder"/>

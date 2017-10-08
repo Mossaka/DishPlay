@@ -15,7 +15,8 @@ import SwiftyJSON
 
 
 class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
-
+    @IBOutlet var parentView: UIView!
+    
     public var restuarantName = ""
     @IBOutlet var sceneView: ARSCNView!
 	
@@ -42,7 +43,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
         sceneView.scene = scene
         
         print(restuarantName)
-        
+        parentView.sendSubview(toBack: sceneView)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.handleTap(gestureReconize:)))
         view.addGestureRecognizer(tapGesture)
 
@@ -59,99 +60,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 					self.cardNumbers = 0
 				})
 			}
-			
-//			for node in allNodes {
-//				if result.node == node.parent {
-//					return
-//				}
-//			}
 		}
-//		guard let touch = touches.first else { return }
-//		var hitOnCard = false
-//		let nodeResults = sceneView.hitTest(touch.location(in: sceneView), options: nil)
-//		for result in nodeResults {
-//			if allNodes.contains(result.node) {
-//				hitOnCard = true
-//				result.node.runAction(SCNAction.wait(duration: 0.5), completionHandler: {
-//					result.node.parent?.removeFromParentNode()
-//					self.allNodes.remove(at: self.allNodes.index(of: result.node)!)
-//					self.cardNumbers = 0
-//				})
-//			}
-//			for node in allNodes {
-//				if result.node == node.parent {
-//					return
-//				}
-//			}
-//		}
-//		if !hitOnCard && image != nil && cardNumbers == 0 {
-//			cardNumbers = 1
-//			let results = sceneView.hitTest(touch.location(in: sceneView), types: [ARHitTestResult.ResultType.featurePoint])
-//			guard let hitFeature = results.last else { return }
-//			let hitTransform = SCNMatrix4(hitFeature.worldTransform)
-//			let hitPosition = SCNVector3Make(hitTransform.m41,
-//											 hitTransform.m42,
-//											 hitTransform.m43)
-//
-//			let billboardConstraint = SCNBillboardConstraint()
-//			billboardConstraint.freeAxes = SCNBillboardAxis.Y
-//
-//			let backNode = SCNNode()
-//			// backNode.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.5)
-//			let plaque = SCNBox(width: 0.14, height: 0.1, length: 0.01, chamferRadius: 0.005)
-//			plaque.firstMaterial?.diffuse.contents = UIColor(white: 1.0, alpha: 0.6)
-//			backNode.geometry = plaque
-//			// backNode.position = hitPosition
-//
-//			//Set up card view
-//			let imageView = UIView(frame: CGRect(x: 0, y: 0, width: 800, height: 600))
-//			imageView.backgroundColor = .clear
-//			imageView.alpha = 1.0
-//
-//			let circleLabel = UILabel(frame: CGRect(x: imageView.frame.width - 144, y: 48, width: 96, height: 96))
-//			circleLabel.layer.cornerRadius = 48
-//			circleLabel.clipsToBounds = true
-//			circleLabel.backgroundColor = .red
-//			imageView.addSubview(circleLabel)
-//
-//			let imageToDisplay = image
-//			//let imageview = UIImageView(image: image)
-//			//imageView.addSubview(imageview)
-//
-//			let infoNode = SCNNode()
-//			//infoNode.scale = SCNVector3(x: 0.5, y: 0.5, z: 0.5)
-//			let infoGeometry = SCNPlane(width: 0.13, height: 0.09)
-//			infoGeometry.firstMaterial?.diffuse.contents = imageToDisplay
-//			infoNode.geometry = infoGeometry
-//			infoNode.position = hitPosition
-//			backNode.constraints = [billboardConstraint]
-//			infoNode.constraints = [billboardConstraint]
-//			infoNode.addChildNode(backNode)
-//			sceneView.scene.rootNode.addChildNode(infoNode)
-//			self.allNodes.append(backNode)
-//		}
 	}
 	
 	func touches() {
 		print("create card!")
-		//guard let touch = touchesMade?.first else { return }
-//		var hitOnCard = false
-//		let nodeResults = sceneView.hitTest(touch.location(in: sceneView), options: nil)
-//		for result in nodeResults {
-//			if allNodes.contains(result.node) {
-//				hitOnCard = true
-//				result.node.runAction(SCNAction.wait(duration: 0.5), completionHandler: {
-//					result.node.parent?.removeFromParentNode()
-//					self.allNodes.remove(at: self.allNodes.index(of: result.node)!)
-//					self.cardNumbers = 0
-//				})
-//			}
-//			for node in allNodes {
-//				if result.node == node.parent {
-//					return
-//				}
-//			}
-//		}
 		let results = sceneView.hitTest(touch.location(in: sceneView), types: [ARHitTestResult.ResultType.featurePoint])
 		guard let hitFeature = results.last else { return }
 		let hitTransform = SCNMatrix4(hitFeature.worldTransform)
@@ -179,6 +92,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 //		imageView.addSubview(circleLabel)
 		
 		let imageToDisplay = image
+        
 		let imageview = UIImageView(image: imageToDisplay)
 		imageView.addSubview(imageview)
 		
@@ -238,14 +152,14 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 */
     var dishName: String = "" {
         willSet {
-			print("in dishname")
+            print("Dish name is \(newValue)")
             // run the image grapping thing
 			if cardNumbers == 0 {
             let headers = [
                 "Ocp-Apim-Subscription-Key": "293bdc29ef6540749d2db90d239bdc0e"
             ]
             var requestParams = [String:AnyObject]()
-            requestParams["q"] = restuarantName + " " + newValue as AnyObject?
+            requestParams["q"] = newValue as AnyObject?
             requestParams["count"] = 10 as AnyObject?
             requestParams["safeSearch"] = "Strict" as AnyObject?
             
@@ -331,30 +245,41 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
         let scale: CGFloat = image.size.width / sceneView.frame.size.width
         let rect: CGRect = CGRect(x: textView.frame.origin.x, y: textView.frame.origin.y-sceneView.frame.origin.y, width: textView.frame.size.width, height: textView.frame.size.height)
         let croppedImage = image.crop(rect:rect, scale: scale)
-        // use Azure computer vision API
-        /*
-        var ocrParameters = [String:String]()
-        ocrParameters["url"] = "https://i.stack.imgur.com/vrkIj.png"
+        let imageData = UIImagePNGRepresentation(croppedImage)!
         let headers = [
-            "Content-Type": "application/json",
-            "Ocp-Apim-Subscription-Key": "1b87ea699b16400c804b43a377a82484"
+            "Content-Type": "application/octet-stream",
+            "Ocp-Apim-Subscription-Key": "b33063f266204f2ca7b6760363f33333",
+            "language":"en"
         ]
-        Alamofire.request("https://westcentralus.api.cognitive.microsoft.com/vision/v1.0/ocr", method: .post, parameters: [:], encoding: "{\"url\":\"https://i.stack.imgur.com/vrkIj.png\"}", headers: headers).responseJSON {
+        var setence = ""
+        Alamofire.upload(imageData, to: "https://westus.api.cognitive.microsoft.com/vision/v1.0/ocr?language=en", method: .post, headers: headers).responseJSON {
             (response:DataResponse<Any>) in
-            
-            switch(response.result) {
-                case .success(_):
-                    if let JSON = response.result.value as? [String: Any] {
-                        print(JSON)
+            if let result = response.result.value as? [String:Any] {
+                let json = JSON(arrayLiteral: result)
+                for (key, subJSON):(String, JSON) in json[0]["regions"][0] {
+                    if key == "lines" {
+                        for (_, line): (String, JSON) in subJSON {
+                            for (key1, subJSON1):(String, JSON) in line {
+                                if key1 == "words" {
+                                    for (_, word): (String, JSON) in subJSON1 {
+                                        for (key2, subJSON2):(String, JSON) in word {
+                                            if key2 == "text" {
+                                                print("subJSON2 is \(subJSON2)")
+                                                if let word = subJSON2.string {
+                                                    setence += " \(word)"
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
-                case .failure(_):
-                    if let errorNum = response.response?.statusCode {
-                        let stringErrorNum = "{\"error\": \(errorNum)}"
-                        print(stringErrorNum)
-                    }
+                }
+                self.dishName = setence
             }
-        }*/
-        
+        }
+        /*
         if let tessract = G8Tesseract(language: "eng") {
             tessract.delegate = self
             
@@ -363,7 +288,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
             print("Recognized text: \(tessract.recognizedText)")
             
             dishName = tessract.recognizedText.trim()
-        }
+        }*/
         //let imagePlane = SCNPlane(width: sceneView.bounds.width / 6000, height: sceneView.bounds.height / 6000)
         //imagePlane.firstMaterial?.
         //imagePlane.
