@@ -20,13 +20,13 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
     public var restuarantName = ""
     @IBOutlet var sceneView: ARSCNView!
 	
-	var allNodes: [SCNNode] = []
-	var cardNumbers = 0
-	var touch: UITouch!
-	
+	private var allNodes: [SCNNode] = []
+	private var cardNumbers = 0
+	private var touch: UITouch!
 
     
-    @IBOutlet weak var textView: UIView!
+	@IBOutlet weak var textView: UIView!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -58,8 +58,9 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 				result.node.runAction(SCNAction.wait(duration: 0.5), completionHandler: {
 					result.node.parent?.removeFromParentNode()
 					self.allNodes.remove(at: self.allNodes.index(of: result.node)!)
-					self.cardNumbers = 0
 				})
+				self.textView.alpha = 0.5
+				self.cardNumbers = 0
 			}
 		}
 	}
@@ -92,15 +93,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		box.firstMaterial?.diffuse.contents = UIColor(white: 1.0, alpha: 0.2)
 		backNode.geometry = box
 		
-
-		
-//		let circleLabel = UILabel(frame: CGRect(x: imageView.frame.width - 144, y: 48, width: 96, height: 96))
-//		circleLabel.layer.cornerRadius = 48
-//		circleLabel.clipsToBounds = true
-//		circleLabel.backgroundColor = .red
-//		imageView.addSubview(circleLabel)
-		
-		
 		let closeNode = SCNNode()
 		let closeSphere = SCNSphere(radius: 0.006)
 		closeSphere.firstMaterial?.diffuse.contents = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
@@ -120,22 +112,43 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		nameView.alpha = 0.6
 		
 		let dishNameTag = UILabel(frame: CGRect(x: 0, y: 0, width: imageView.frame.width, height: 30))
-		dishNameTag.textAlignment = .center
+		dishNameTag.textAlignment = .justified
+		dishNameTag.text = dishName
 		dishNameTag.font = UIFont(name: "Italic", size: 60)
 		dishNameTag.backgroundColor = .green
-		dishNameTag.text = dishName
 		nameView.addSubview(dishNameTag)
 		nameNodeGeometry.firstMaterial?.diffuse.contents = nameView
 		dishNameNode.geometry = nameNodeGeometry
+		
+//		let orderNode = SCNNode()
+//		let orderGeometry = SCNPlane(width: 0.03, height: 0.03)
+//
+//		let orderView = UIView(frame: CGRect(x: 0, y: 0, width: 0.03, height: 0.03))
+//		orderView.backgroundColor = .clear
+//		orderView.alpha = 0.6
+//
+//		let orderLabel = UILabel(frame: CGRect(x: 0, y: 0, width: 0.03, height: 0.03))
+//		orderLabel.textAlignment = .center
+//		orderLabel.text = "Order"
+//		orderLabel.backgroundColor = .yellow
+//		orderLabel.font = UIFont(name: "Italic", size: 40)
+//
+//		orderView.addSubview(orderLabel)
+//		orderGeometry.firstMaterial?.diffuse.contents = orderView
+//		orderNode.geometry = orderGeometry
 
 		infoNode.addChildNode(dishNameNode)
+		//infoNode.addChildNode(orderNode)
 		infoNode.addChildNode(closeNode)
 		infoNode.constraints = [billboardConstraint]
 		closeNode.position.y += Float(infoGeometry.height/2)
 		closeNode.position.x += Float(infoGeometry.width/2)
 		dishNameNode.position.y += Float(infoGeometry.height*0.7)
+//		orderNode.position.x -= Float(infoGeometry.width/2)
+//		orderNode.position.y += Float(infoGeometry.height/2)
 		infoNode.addChildNode(backNode)
 		sceneView.scene.rootNode.addChildNode(infoNode)
+		textView.alpha = 0.0
 		cardNumbers = 1
 		print("Appear!")
 		self.allNodes.append(closeNode)
@@ -228,17 +241,22 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
     
     var imageURL: URL? {
         didSet {
-			fetchImage()
+			if cardNumbers == 0 {
+				fetchImage()
+			}
         }
     }
     
     private func fetchImage() {
         if let url = imageURL {
-            let urlContents = try? Data(contentsOf: url)
-            if let imageData = urlContents {
-                image = UIImage(data: imageData)
-                //self.performSegue(withIdentifier: "fromARtoImage", sender: self)
-            }
+			DispatchQueue.global(qos: .userInitiated).async { [weak self] in
+				let urlContents = try? Data(contentsOf: url)
+				if let imageData = urlContents, url == self?.imageURL {
+					DispatchQueue.main.async {
+						self?.image = UIImage(data: imageData)
+					}
+				}
+			}
         }
     }
     
@@ -265,7 +283,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
         
         let image = sceneView.snapshot()
         let scale: CGFloat = image.size.width / sceneView.frame.size.width
-        let rect: CGRect = CGRect(x: textView.frame.origin.x, y: textView.frame.origin.y-sceneView.frame.origin.y, width: textView.frame.size.width, height: textView.frame.size.height)
+        let rect = CGRect(x: textView.frame.origin.x, y: textView.frame.origin.y-sceneView.frame.origin.y, width: textView.frame.size.width, height: textView.frame.size.height)
         let croppedImage = image.crop(rect:rect, scale: scale)
         let imageData = UIImagePNGRepresentation(croppedImage)!
         let headers = [
