@@ -40,7 +40,7 @@ class SigninViewController: UIViewController, GIDSignInUIDelegate {
         }
     }
     
-    /*
+    
     //MARK:Google SignIn Delegate
     func signInWillDispatch(signIn: GIDSignIn!, error: NSError!) {
         // myActivityIndicator.stopAnimating()
@@ -73,9 +73,6 @@ class SigninViewController: UIViewController, GIDSignInUIDelegate {
             print("\(error.localizedDescription)")
         }
     }
-    
-    
-*/
     
     // MARK: - Navigation
 
