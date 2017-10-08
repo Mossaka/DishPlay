@@ -1,4 +1,4 @@
-//
+    //
 //  RestaurantTableViewController.swift
 //  DishPlay
 //
@@ -28,6 +28,7 @@ class RestaurantTableViewController: UIViewController, UITableViewDataSource, UI
         self.resTableView.dataSource = self
         self.resTableView.delegate = self
         locManager.requestWhenInUseAuthorization()
+        parentView.sendSubview(toBack: resTableView)
         indicator.startAnimating()
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){

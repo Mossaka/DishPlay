@@ -31,5 +31,8 @@ target 'DishPlay' do
   
   pod 'Alamofire', '~> 4.5'
   pod 'SwiftyJSON'
-
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
+  pod 'Firebase/Database'
 end
