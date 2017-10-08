@@ -23,12 +23,12 @@ class RestaurantTableViewController: UIViewController, UITableViewDataSource, UI
     @IBOutlet weak var parentView: UIView!
     
     @IBOutlet weak var indicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.resTableView.dataSource = self
         self.resTableView.delegate = self
         locManager.requestWhenInUseAuthorization()
-        parentView.sendSubview(toBack: resTableView)
         indicator.startAnimating()
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
@@ -45,6 +45,7 @@ class RestaurantTableViewController: UIViewController, UITableViewDataSource, UI
         else {
             // segue to AR
         }
+        //parentView.sendSubview(toBack: resTableView)
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int
