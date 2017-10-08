@@ -46,7 +46,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
         parentView.sendSubview(toBack: sceneView)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.handleTap(gestureReconize:)))
         view.addGestureRecognizer(tapGesture)
-
     }
 	
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
@@ -91,15 +90,12 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		let box = SCNBox(width: 0.14, height: 0.14*imageRatio, length: 0.01, chamferRadius: 0.005)
 		box.firstMaterial?.diffuse.contents = UIColor(white: 1.0, alpha: 0.2)
 		backNode.geometry = box
-		
-
-		
+    
 //		let circleLabel = UILabel(frame: CGRect(x: imageView.frame.width - 144, y: 48, width: 96, height: 96))
 //		circleLabel.layer.cornerRadius = 48
 //		circleLabel.clipsToBounds = true
 //		circleLabel.backgroundColor = .red
 //		imageView.addSubview(circleLabel)
-		
 		
 		let closeNode = SCNNode()
 		let closeSphere = SCNSphere(radius: 0.006)
