@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = '2DB730A9BEE9A5F6F80D8BDA07E05981'
+               BlueprintIdentifier = 'ACED38C3868D94E91FF7E2CFB0F8002C'
                BlueprintName = 'Pods-DishPlay'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'Pods-DishPlay.framework'>

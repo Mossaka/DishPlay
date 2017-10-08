@@ -48,7 +48,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
         parentView.sendSubview(toBack: sceneView)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.handleTap(gestureReconize:)))
         view.addGestureRecognizer(tapGesture)
-		
+
 //		let httpHeader = ["Ocp-Apim-Subscription-Key": "36d7f5aceb124a0f9bc50c2bf6023699"]
 //		Alamofire.request("https://api.cognitive.microsoft.com/bing/v7.0/SpellCheck",
 //						  method: .get,
@@ -70,9 +70,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 //							}
 //
 //			}
-
     }
-	
+    
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		touch = touches.first
 		let nodeResults = sceneView.hitTest(touch.location(in: sceneView), options: nil)

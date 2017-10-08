@@ -1,4 +1,4 @@
-//
+    //
 //  RestaurantTableViewController.swift
 //  DishPlay
 //
@@ -20,12 +20,16 @@ class RestaurantTableViewController: UIViewController, UITableViewDataSource, UI
     var resIds = [String]()
     var resImages = [UIImage]()
     
+    @IBOutlet weak var parentView: UIView!
+    
+    @IBOutlet weak var indicator: UIActivityIndicatorView!
     override func viewDidLoad() {
         super.viewDidLoad()
         self.resTableView.dataSource = self
         self.resTableView.delegate = self
         locManager.requestWhenInUseAuthorization()
-        
+        parentView.sendSubview(toBack: resTableView)
+        indicator.startAnimating()
         if (CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedWhenInUse ||
             CLLocationManager.authorizationStatus() == CLAuthorizationStatus.authorizedAlways){
             currentLocation = locManager.location
@@ -36,6 +40,7 @@ class RestaurantTableViewController: UIViewController, UITableViewDataSource, UI
             assert(resNames.count == resIds.count)
             print(self.resNames)
             self.resTableView.reloadData()
+
         }
         else {
             // segue to AR
@@ -49,14 +54,25 @@ class RestaurantTableViewController: UIViewController, UITableViewDataSource, UI
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell
     {
+        
         guard let cell = resTableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath as IndexPath) as? TableViewCell
         else {
             fatalError("The dequeued cell is not an instance of MealTableViewCell.")
         }
         cell.nameLabel.text = resNames[indexPath.row]
         cell.photo.image = resImages[indexPath.row]
+        
+        if(indexPath.row == 7) {
+            indicator.stopAnimating()
+            indicator.hidesWhenStopped = true
+        }
         return cell
     }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 110
+    }
+    
     
     func getListOfRestaurants(lat: CLLocationDegrees, lon: CLLocationDegrees) {
         var restNames = [String]()
