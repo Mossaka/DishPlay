@@ -26,11 +26,11 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 	private var cardNumbers = 0
 	private var touch: UITouch!
 	private var imageView: UIView!
-	private var orderLabel: UILabel?
-
+    private var cardStack: [Card] = []
     
 	@IBOutlet weak var textView: UIView!
-	
+
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -77,29 +77,16 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		touch = touches.first
 		let nodeResults = sceneView.hitTest(touch.location(in: sceneView), options: nil)
-		let viewResults = sceneView.hitTest(touch.location(in: sceneView), with: nil)
 		for result in nodeResults {
 			if allNodes.contains(result.node) {
 				result.node.runAction(SCNAction.wait(duration: 0.5), completionHandler: {
-					result.node.parent?.removeFromParentNode()
+					print("touched")
+					result.node.parent!.physicsBody!.velocity = SCNVector3.init(0,10,0)
 					self.allNodes.remove(at: self.allNodes.index(of: result.node)!)
 				})
 				self.textView.alpha = 0.5
 				self.cardNumbers = 0
-			}
-			return
-		}
-		
-		if let orderExist = orderLabel?.center {
-			if (viewResults?.point(inside: orderExist, with: event))! {
-				for node in allNodes {
-					node.runAction(SCNAction.wait(duration: 0.5), completionHandler: {
-						node.parent?.removeFromParentNode()
-						self.allNodes.remove(at: self.allNodes.index(of: node)!)
-					})
-				}
-				self.textView.alpha = 0.5
-				self.cardNumbers = 0
+				break
 			}
 		}
 	}
@@ -147,41 +134,50 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		let dishNameNode = SCNNode()
 		let nameNodeGeometry = SCNPlane(width: 0.13, height: 0.02)
 		
-		let nameView = UIView(frame: CGRect(x: 0, y: 0, width: imageView.frame.width, height: 30))
+		let nameView = UIView(frame: CGRect(x: 0, y: 0, width: 130, height: 20))
 		nameView.backgroundColor = .clear
 		nameView.alpha = 0.6
 		
-		let dishNameTag = UILabel(frame: CGRect(x: 0, y: 0, width: imageView.frame.width, height: 30))
-		dishNameTag.textAlignment = .justified
+		let dishNameTag = UILabel(frame: CGRect(x: 0, y: 0, width: 130, height: 20))
+		dishNameTag.textAlignment = .center
 		dishNameTag.text = dishName
-		dishNameTag.font = UIFont(name: "Italic", size: 60)
-		dishNameTag.backgroundColor = .green
+		dishNameTag.font = UIFont(name: "Italic", size: 50)
+		dishNameTag.adjustsFontSizeToFitWidth = true
+		dishNameTag.backgroundColor = .yellow
 		nameView.addSubview(dishNameTag)
 		nameNodeGeometry.firstMaterial?.diffuse.contents = nameView
 		dishNameNode.geometry = nameNodeGeometry
 		
-		orderLabel = UILabel(frame: CGRect(x: 0, y: infoGeometry.height, width: 96, height: 96))
-		orderLabel!.textAlignment = .justified
-		orderLabel!.text = "Order"
-		orderLabel!.clipsToBounds = true
-		orderLabel!.backgroundColor = .yellow
-		orderLabel!.font = UIFont(name: "Italic", size: 60)
-
-		imageView.addSubview(orderLabel!)
-		imageView.isUserInteractionEnabled = true
+		let orderNode = SCNNode()
+		let orderSphere = SCNSphere(radius: 0.006)
+		orderSphere.firstMaterial?.diffuse.contents = UIColor(red: 0.0, green: 1.0, blue: 0.0, alpha: 1.0)
+		orderNode.geometry = orderSphere
 
 		infoNode.addChildNode(dishNameNode)
 		infoNode.addChildNode(closeNode)
+		infoNode.addChildNode(orderNode)
 		infoNode.constraints = [billboardConstraint]
 		closeNode.position.y += Float(infoGeometry.height/2)
 		closeNode.position.x += Float(infoGeometry.width/2)
 		dishNameNode.position.y += Float(infoGeometry.height*0.7)
+		orderNode.position.y += Float(infoGeometry.height/2)
+		orderNode.position.x -= Float(infoGeometry.width/2)
 		infoNode.addChildNode(backNode)
 		sceneView.scene.rootNode.addChildNode(infoNode)
+		
+		let physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: infoNode))
+		infoNode.physicsBody = physicsBody
+		
+		
 		textView.alpha = 0.0
 		cardNumbers = 1
 		self.allNodes.append(closeNode)
-	}
+		self.allNodes.append(orderNode)
+        if let cardImage = image {
+            cardStack.append(Card(name: dishName, image: image!))
+        }
+    }
+
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -461,4 +457,13 @@ extension String: ParameterEncoding {
         return request
     }
     
+}
+
+class Card {
+    public var name: String
+    public var image: UIImage
+    init(name: String, image: UIImage) {
+        self.name = name
+        self.image = image
+    }
 }
