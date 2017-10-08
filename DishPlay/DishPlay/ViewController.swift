@@ -16,17 +16,21 @@ import SwiftyJSON
 
 class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
     @IBOutlet var parentView: UIView!
+	
+	var spinner: UIActivityIndicatorView?
     
     public var restuarantName = ""
     @IBOutlet var sceneView: ARSCNView!
 	
-	var allNodes: [SCNNode] = []
-	var cardNumbers = 0
-	var touch: UITouch!
-	
+	private var allNodes: [SCNNode] = []
+	private var cardNumbers = 0
+	private var touch: UITouch!
+	private var imageView: UIView!
+	private var orderLabel: UILabel?
 
     
-    @IBOutlet weak var textView: UIView!
+	@IBOutlet weak var textView: UIView!
+	
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -46,22 +50,60 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
         parentView.sendSubview(toBack: sceneView)
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(ViewController.handleTap(gestureReconize:)))
         view.addGestureRecognizer(tapGesture)
+
+//		let httpHeader = ["Ocp-Apim-Subscription-Key": "36d7f5aceb124a0f9bc50c2bf6023699"]
+//		Alamofire.request("https://api.cognitive.microsoft.com/bing/v7.0/SpellCheck",
+//						  method: .get,
+//						  parameters: ["text":"califnia"], headers: httpHeader).responseJSON {
+//
+//							response in
+//
+//							print("success")
+//							if let result = response.result.value as? [String: Any] {
+//								let json = JSON(arrayLiteral: result)
+//								print(json)
+//								print(json["flaggedTokens"])
+//								for (_, subJSON):(String, JSON) in json["flaggedTokens"] {
+//									print("in here")
+//									let newName = self.dishName.replacingOccurrences(of: subJSON["token"].string!, with: subJSON["suggestions"][0]["suggestion"].string!)
+//									print(newName)
+//									self.dishName = newName
+//								}
+//							}
+//
+//			}
     }
-	
+    
 	override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
 		touch = touches.first
 		let nodeResults = sceneView.hitTest(touch.location(in: sceneView), options: nil)
+		let viewResults = sceneView.hitTest(touch.location(in: sceneView), with: nil)
 		for result in nodeResults {
-			
 			if allNodes.contains(result.node) {
 				result.node.runAction(SCNAction.wait(duration: 0.5), completionHandler: {
 					result.node.parent?.removeFromParentNode()
 					self.allNodes.remove(at: self.allNodes.index(of: result.node)!)
-					self.cardNumbers = 0
 				})
+				self.textView.alpha = 0.5
+				self.cardNumbers = 0
+			}
+			return
+		}
+		
+		if let orderExist = orderLabel?.center {
+			if (viewResults?.point(inside: orderExist, with: event))! {
+				for node in allNodes {
+					node.runAction(SCNAction.wait(duration: 0.5), completionHandler: {
+						node.parent?.removeFromParentNode()
+						self.allNodes.remove(at: self.allNodes.index(of: node)!)
+					})
+				}
+				self.textView.alpha = 0.5
+				self.cardNumbers = 0
 			}
 		}
 	}
+	
 	
 	func touches() {
 		print("create card!")
@@ -80,7 +122,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		let imageview = UIImageView(image: imageToDisplay)
 		
 		//Set up card view
-		let imageView = UIView(frame: imageview.frame)
+		imageView = UIView(frame: imageview.frame)
 		imageView.backgroundColor = .clear
 		imageView.alpha = 1.0
 		
@@ -90,12 +132,6 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		let box = SCNBox(width: 0.14, height: 0.14*imageRatio, length: 0.01, chamferRadius: 0.005)
 		box.firstMaterial?.diffuse.contents = UIColor(white: 1.0, alpha: 0.2)
 		backNode.geometry = box
-    
-//		let circleLabel = UILabel(frame: CGRect(x: imageView.frame.width - 144, y: 48, width: 96, height: 96))
-//		circleLabel.layer.cornerRadius = 48
-//		circleLabel.clipsToBounds = true
-//		circleLabel.backgroundColor = .red
-//		imageView.addSubview(circleLabel)
 		
 		let closeNode = SCNNode()
 		let closeSphere = SCNSphere(radius: 0.006)
@@ -116,13 +152,23 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		nameView.alpha = 0.6
 		
 		let dishNameTag = UILabel(frame: CGRect(x: 0, y: 0, width: imageView.frame.width, height: 30))
-		dishNameTag.textAlignment = .center
+		dishNameTag.textAlignment = .justified
+		dishNameTag.text = dishName
 		dishNameTag.font = UIFont(name: "Italic", size: 60)
 		dishNameTag.backgroundColor = .green
-		dishNameTag.text = dishName
 		nameView.addSubview(dishNameTag)
 		nameNodeGeometry.firstMaterial?.diffuse.contents = nameView
 		dishNameNode.geometry = nameNodeGeometry
+		
+		orderLabel = UILabel(frame: CGRect(x: 0, y: infoGeometry.height, width: 96, height: 96))
+		orderLabel!.textAlignment = .justified
+		orderLabel!.text = "Order"
+		orderLabel!.clipsToBounds = true
+		orderLabel!.backgroundColor = .yellow
+		orderLabel!.font = UIFont(name: "Italic", size: 60)
+
+		imageView.addSubview(orderLabel!)
+		imageView.isUserInteractionEnabled = true
 
 		infoNode.addChildNode(dishNameNode)
 		infoNode.addChildNode(closeNode)
@@ -132,8 +178,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		dishNameNode.position.y += Float(infoGeometry.height*0.7)
 		infoNode.addChildNode(backNode)
 		sceneView.scene.rootNode.addChildNode(infoNode)
+		textView.alpha = 0.0
 		cardNumbers = 1
-		print("Appear!")
 		self.allNodes.append(closeNode)
 	}
     
@@ -225,30 +271,39 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
     
     var imageURL: URL? {
         didSet {
-			fetchImage()
+			if cardNumbers == 0 {
+				fetchImage()
+			}
         }
     }
     
-    private func fetchImage() {
-        if let url = imageURL {
-            let urlContents = try? Data(contentsOf: url)
-            if let imageData = urlContents {
-                image = UIImage(data: imageData)
-                //self.performSegue(withIdentifier: "fromARtoImage", sender: self)
-            }
-        }
-    }
-    
-    private var image: UIImage?
+	private func fetchImage() {
+		if let url = imageURL {
+			spinner = UIActivityIndicatorView(frame: CGRect(x: self.view.frame.size.width/2, y: self.view.frame.size.height/2, width: 0.2, height: 0.2))
+			self.view.addSubview(spinner!)
+			spinner?.startAnimating()
+			DispatchQueue.global(qos: .userInitiated).async {
+				[weak self] in
+				let urlContents = try? Data(contentsOf: url)
+				if let imageData = urlContents, url == self?.imageURL {
+					DispatchQueue.main.async {
+						self?.image = UIImage(data: imageData)
+						//self.performSegue(withIdentifier: "fromARtoImage", sender: self)
+					}
+				}
+			}
+		}
+	}
+	
+	private var image: UIImage?
 	{
 		didSet {
 			if image != nil {
 				touches()
+				spinner?.stopAnimating()
 			} else {
 				cardNumbers = 0
 			}
-			print(image == nil)
-			print(cardNumbers)
 		}
 	}
     
@@ -262,7 +317,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
         
         let image = sceneView.snapshot()
         let scale: CGFloat = image.size.width / sceneView.frame.size.width
-        let rect: CGRect = CGRect(x: textView.frame.origin.x, y: textView.frame.origin.y-sceneView.frame.origin.y, width: textView.frame.size.width, height: textView.frame.size.height)
+        let rect = CGRect(x: textView.frame.origin.x, y: textView.frame.origin.y-sceneView.frame.origin.y, width: textView.frame.size.width, height: textView.frame.size.height)
         let croppedImage = image.crop(rect:rect, scale: scale)
         let imageData = UIImagePNGRepresentation(croppedImage)!
         let headers = [
@@ -296,22 +351,25 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
                     }
                 }
                 self.dishName = setence
-                var requestParams = [String:AnyObject]()
-                requestParams["text"] = self.dishName as AnyObject?
-                requestParams["mode"] = "Proof" as AnyObject?
-                let httpHeader = ["Ocp-Apim-Subscription-Key": "603e449278a6495fa99fbf3a43816582"]
+				/*
+                let httpHeader = ["Ocp-Apim-Subscription-Key": "af934b444d5342898a667099424b7841"]
                 Alamofire.request("https://api.cognitive.microsoft.com/bing/v5.0/spellcheck",
                                   method: .get,
-                                  parameters: requestParams,
-                                  encoding: URLEncoding.default, headers: httpHeader).responseJSON {
+								  parameters: ["text":"califnia"], headers: httpHeader).responseJSON {
+									
                     (response:DataResponse<Any>) in
-    
                     switch(response.result) {
                     case .success(_):
+						print("success")
                         if let result = response.result.value as? [String: Any] {
-                            let json = JSON(arrayLiteral: result)
+							let json = JSON(arrayLiteral: result)
+							print(json)
+							print(json["flaggedTokens"])
                             for (_, subJSON):(String, JSON) in json["flaggedTokens"] {
-                                self.dishName = self.dishName.replacingOccurrences(of: subJSON["token"].string!, with: subJSON["suggestions"][0]["suggestion"].string!)
+								print("in here")
+                                let newName = self.dishName.replacingOccurrences(of: subJSON["token"].string!, with: subJSON["suggestions"][0]["suggestion"].string!)
+								print(newName)
+								self.dishName = newName
                             }
                         }
                     case .failure(_):
@@ -320,8 +378,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
                             print(stringErrorNum)
                         }
 
-                    }
-                }
+                    }*/
+				
             }
         }
         /*
