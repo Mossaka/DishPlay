@@ -53,6 +53,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		touch = touches.first
 		let nodeResults = sceneView.hitTest(touch.location(in: sceneView), options: nil)
 		for result in nodeResults {
+			
 			if allNodes.contains(result.node) {
 				result.node.runAction(SCNAction.wait(duration: 0.5), completionHandler: {
 					result.node.parent?.removeFromParentNode()
@@ -75,15 +76,23 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		let billboardConstraint = SCNBillboardConstraint()
 		billboardConstraint.freeAxes = SCNBillboardAxis.Y
 		
-		let backNode = SCNNode()
-		let plaque = SCNBox(width: 0.14, height: 0.1, length: 0.01, chamferRadius: 0.005)
-		plaque.firstMaterial?.diffuse.contents = UIColor(white: 1.0, alpha: 0.2)
-		backNode.geometry = plaque
+		let imageRatio = image!.size.height/image!.size.width
+		let imageToDisplay = image!
+		let imageview = UIImageView(image: imageToDisplay)
 		
 		//Set up card view
-		let imageView = UIView(frame: CGRect(x: 0, y: 0, width: 800, height: 600))
+		let imageView = UIView(frame: imageview.frame)
 		imageView.backgroundColor = .clear
 		imageView.alpha = 1.0
+		
+		imageView.addSubview(imageview)
+
+		let backNode = SCNNode()
+		let box = SCNBox(width: 0.14, height: 0.14*imageRatio, length: 0.01, chamferRadius: 0.005)
+		box.firstMaterial?.diffuse.contents = UIColor(white: 1.0, alpha: 0.2)
+		backNode.geometry = box
+		
+
 		
 //		let circleLabel = UILabel(frame: CGRect(x: imageView.frame.width - 144, y: 48, width: 96, height: 96))
 //		circleLabel.layer.cornerRadius = 48
@@ -91,27 +100,40 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 //		circleLabel.backgroundColor = .red
 //		imageView.addSubview(circleLabel)
 		
-		let imageToDisplay = image
-        
-		let imageview = UIImageView(image: imageToDisplay)
-		imageView.addSubview(imageview)
 		
 		let closeNode = SCNNode()
-		let closeSphere = SCNSphere(radius: 0.012)
+		let closeSphere = SCNSphere(radius: 0.006)
 		closeSphere.firstMaterial?.diffuse.contents = UIColor(red: 1.0, green: 0.0, blue: 0.0, alpha: 1.0)
 		closeNode.geometry = closeSphere
 		
 		let infoNode = SCNNode()
-		let infoGeometry = SCNPlane(width: 0.13, height: 0.09)
+		let infoGeometry = SCNPlane(width: 0.13, height: 0.13*imageRatio)
 		infoNode.position = hitPosition
 		infoGeometry.firstMaterial?.diffuse.contents = imageView
 		infoNode.geometry = infoGeometry
-		closeNode.position.x = infoNode.position.x + Float(infoGeometry.width / 2)
-		closeNode.position.y = infoNode.position.y + Float(infoGeometry.height / 2)
-		backNode.constraints = [billboardConstraint]
-		infoNode.constraints = [billboardConstraint]
-		closeNode.constraints = [billboardConstraint]
+		
+		let dishNameNode = SCNNode()
+		let nameNodeGeometry = SCNPlane(width: 0.13, height: 0.02)
+		
+		let nameView = UIView(frame: CGRect(x: 0, y: 0, width: imageView.frame.width, height: 30))
+		nameView.backgroundColor = .clear
+		nameView.alpha = 0.6
+		
+		let dishNameTag = UILabel(frame: CGRect(x: 0, y: 0, width: imageView.frame.width, height: 30))
+		dishNameTag.textAlignment = .center
+		dishNameTag.font = UIFont(name: "Italic", size: 60)
+		dishNameTag.backgroundColor = .green
+		dishNameTag.text = dishName
+		nameView.addSubview(dishNameTag)
+		nameNodeGeometry.firstMaterial?.diffuse.contents = nameView
+		dishNameNode.geometry = nameNodeGeometry
+
+		infoNode.addChildNode(dishNameNode)
 		infoNode.addChildNode(closeNode)
+		infoNode.constraints = [billboardConstraint]
+		closeNode.position.y += Float(infoGeometry.height/2)
+		closeNode.position.x += Float(infoGeometry.width/2)
+		dishNameNode.position.y += Float(infoGeometry.height*0.7)
 		infoNode.addChildNode(backNode)
 		sceneView.scene.rootNode.addChildNode(infoNode)
 		print("Appear!")
@@ -333,6 +355,21 @@ extension UIImage {
         let image = UIImage(cgImage: imageRef!)
         return image
     }
+	
+//	func scaleToNewSize(heightPlusWidth: CGFloat) -> UIImage {
+//		var scaledImageRect = CGRect(x: 0, y: 0, width: 0, height: 0)
+//		let newSize = CGSize(width: heightPlusWidth/(self.size.width+self.size.height)*self.size.width, height: heightPlusWidth/(self.size.width+self.size.height)*self.size.height)
+//		scaledImageRect.size = newSize
+//		scaledImageRect.origin.x = (newSize.width - scaledImageRect.size.width) / 2.0
+//		scaledImageRect.origin.y = (newSize.height - scaledImageRect.size.height) / 2.0
+//
+//		UIGraphicsBeginImageContextWithOptions( newSize, false, 0 )
+//		draw(in: scaledImageRect)
+//		let scaledImage = UIGraphicsGetImageFromCurrentImageContext()
+//		UIGraphicsEndImageContext()
+//
+//		return scaledImage!
+//	}
 }
 
 extension String: ParameterEncoding {
