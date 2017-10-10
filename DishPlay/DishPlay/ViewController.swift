@@ -186,6 +186,8 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
 		orderNode.position.x -= Float(infoGeometry.width/2)
 		infoNode.addChildNode(backNode)
 		sceneView.scene.rootNode.addChildNode(infoNode)
+        //infoNode.rotation.x = 1
+        //infoNode.rotation.w = Float.pi/4
 		
 		let physicsBody = SCNPhysicsBody(type: .kinematic, shape: SCNPhysicsShape(node: infoNode))
 		infoNode.physicsBody = physicsBody
@@ -236,53 +238,53 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
         willSet {
             print("Dish name is \(newValue)")
             // run the image grapping thing
-			if cardNumbers == 0 {
-				let headers = [
-					"Ocp-Apim-Subscription-Key": "293bdc29ef6540749d2db90d239bdc0e"
-				]
-				var requestParams = [String:AnyObject]()
-				requestParams["q"] = newValue as AnyObject?
-				requestParams["count"] = 10 as AnyObject?
-				requestParams["safeSearch"] = "Strict" as AnyObject?
-				
-				Alamofire.request("https://api.cognitive.microsoft.com/bing/v7.0/images/search",
-				  parameters: requestParams,
-				  encoding: URLEncoding.default,
-                  headers: headers).responseJSON {
-					(response:DataResponse<Any>) in
-					
-					switch(response.result) {
-					case .success(_):
-						
-						
-						if let JSON = response.result.value as? [String: Any] {
-							print("hahaha")
-							//print(JSON)
-							//take URLs from the json into an ImagesURLsArray
-							let value = JSON["value"] as? [[String: AnyObject]]
-							//for imageValue in value! {
-							if let imageValue = value {
-								if imageValue.count > 0 {
-									self.imageURL = URL(string: (imageValue[0]["contentUrl"] as? String)!)
-									/*Alamofire.download((imageValue["contentUrl"] as? String)!)
-									 .responseData { response in
-									 if let data = response.result.value {
-									 let image = UIImage(data: data)
-									 }
-									 }*/
-									//}
-								}
-							}
-						}  else {
-							print("error with response.result.value")}
-					case .failure(_):
-						if let errorNum = response.response?.statusCode {
-							let stringErrorNum = "{\"error\": \(errorNum)}"
-							print(stringErrorNum)
-						}
-					}
-				}
-			}
+        //if cardNumbers == 0 {
+            let headers = [
+                "Ocp-Apim-Subscription-Key": "293bdc29ef6540749d2db90d239bdc0e"
+            ]
+            var requestParams = [String:AnyObject]()
+            requestParams["q"] = newValue as AnyObject?
+            requestParams["count"] = 10 as AnyObject?
+            requestParams["safeSearch"] = "Strict" as AnyObject?
+            
+            Alamofire.request("https://api.cognitive.microsoft.com/bing/v7.0/images/search",
+              parameters: requestParams,
+              encoding: URLEncoding.default,
+              headers: headers).responseJSON {
+                (response:DataResponse<Any>) in
+                
+                switch(response.result) {
+                case .success(_):
+                    
+                    
+                    if let JSON = response.result.value as? [String: Any] {
+                        print("hahaha")
+                        //print(JSON)
+                        //take URLs from the json into an ImagesURLsArray
+                        let value = JSON["value"] as? [[String: AnyObject]]
+                        //for imageValue in value! {
+                        if let imageValue = value {
+                            if imageValue.count > 0 {
+                                self.imageURL = URL(string: (imageValue[0]["contentUrl"] as? String)!)
+                                /*Alamofire.download((imageValue["contentUrl"] as? String)!)
+                                 .responseData { response in
+                                 if let data = response.result.value {
+                                 let image = UIImage(data: data)
+                                 }
+                                 }*/
+                                //}
+                            }
+                        }
+                    }  else {
+                        print("error with response.result.value")}
+                case .failure(_):
+                    if let errorNum = response.response?.statusCode {
+                        let stringErrorNum = "{\"error\": \(errorNum)}"
+                        print(stringErrorNum)
+                    }
+                }
+            }
+        //}
 		}
     }
     
@@ -332,7 +334,7 @@ class ViewController: UIViewController, ARSCNViewDelegate, G8TesseractDelegate{
             return
         }
         //guard let pointOfView = sceneView.pointOfView else { return }
-        
+        if (cardNumbers != 0) {return}
         let image = sceneView.snapshot()
         let scale: CGFloat = image.size.width / sceneView.frame.size.width
         let rect = CGRect(x: textView.frame.origin.x, y: textView.frame.origin.y-sceneView.frame.origin.y, width: textView.frame.size.width, height: textView.frame.size.height)
